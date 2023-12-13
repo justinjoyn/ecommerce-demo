@@ -27,6 +27,8 @@ export const formatAmount = (
 
 /**
  * Some images are served over http, which causes issues in production.
+ * If the image is served over http, we replace it with https.
+ * An alternative would be to set NSAppTransportSecurity in Info.plist
  */
 export const getSecureLink = (url: string) => {
   if (!url) {

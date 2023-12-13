@@ -18,7 +18,7 @@ export default function ProductsList() {
       onRefresh={refetch}
       refreshing={isLoading}
       renderItem={renderItem}
-      estimatedItemSize={340}
+      estimatedItemSize={232}
     />
   );
 }

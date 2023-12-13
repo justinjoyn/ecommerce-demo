@@ -1,9 +1,9 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
 
-import {BasketItem, Product} from '../common/types';
+import {BasketItem} from '../common/types';
 
 type BasketSate = {
-  itemsById: Record<string, BasketItem | undefined>;
+  itemsById: Record<string, BasketItem>;
 };
 
 const initialState: BasketSate = {
@@ -19,8 +19,8 @@ export const basketSlice = createSlice({
         [action.payload.product.id]: action.payload,
       });
     },
-    remove: (state, action: PayloadAction<Product>) => {
-      delete state.itemsById[action.payload.id];
+    remove: (state, action: PayloadAction<BasketItem>) => {
+      delete state.itemsById[action.payload.product.id];
     },
     clear: state => {
       state.itemsById = {};

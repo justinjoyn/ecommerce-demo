@@ -1,13 +1,11 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Text} from '@ui-kitten/components';
 
 import {Product} from '../common/types';
 import {getSecureLink} from '../common/utils';
 import ProductImage from './ProductImage';
-import QuantityInput from './QuantityInput';
 import ProductInfo from './ProductInfo';
-import Spacer from './Spacer';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {basketActions} from '../store/basket';
 
@@ -24,14 +22,10 @@ export default function ProductListItem(props: Props) {
     state => state.basket.itemsById?.[product.id],
   );
 
-  const [quantity, setQuantity] = useState(productInCart?.quantity || 1);
-
   const isProductInCart = productInCart !== undefined;
 
-  const addButtonText = isProductInCart ? 'Update' : 'Add to Basket';
-
   const onAddToBasket = () => {
-    dispatch(basketActions.addOrUpdate({product: product, quantity: quantity}));
+    dispatch(basketActions.addOrUpdate({product: product, quantity: 1}));
   };
 
   return (
@@ -44,11 +38,11 @@ export default function ProductListItem(props: Props) {
       />
       <View style={styles.innerContainer}>
         <ProductInfo name={product.name} price={product.price} />
-        <QuantityInput quantity={quantity} setQuantity={setQuantity} />
-        <Spacer space={8} />
-        <Button size={'small'} onPress={onAddToBasket}>
-          <Text>{addButtonText}</Text>
-        </Button>
+        {!isProductInCart && (
+          <Button size={'small'} onPress={onAddToBasket}>
+            <Text>Add to basket</Text>
+          </Button>
+        )}
       </View>
     </View>
   );
@@ -75,8 +69,5 @@ const styles = StyleSheet.create({
   productImage: {
     width: 100,
     height: 200,
-  },
-  text: {
-    marginBottom: 8,
   },
 });
