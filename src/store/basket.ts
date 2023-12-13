@@ -1,50 +1,34 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
+
 import {BasketItem, Product} from '../common/types';
 
 type BasketSate = {
-  items: BasketItem[];
+  itemsById: Record<string, BasketItem | undefined>;
 };
 
 const initialState: BasketSate = {
-  items: [],
+  itemsById: {},
 };
 
 export const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    add: (state, action: PayloadAction<BasketItem>) => {
-      state.items.push(action.payload);
-    },
-    increaseQuantity: (state, action: PayloadAction<Product>) => {
-      const selectedItem = state.items.find(
-        item => item.product.id === action.payload.id,
-      );
-      if (selectedItem) {
-        selectedItem.quantity++;
-      }
-    },
-    decreaseQuantity: (state, action: PayloadAction<Product>) => {
-      const selectedItem = state.items.find(
-        item => item.product.id === action.payload.id,
-      );
-      if (selectedItem) {
-        selectedItem.quantity--;
-      }
+    addOrUpdate: (state, action: PayloadAction<BasketItem>) => {
+      state.itemsById = Object.assign(state.itemsById, {
+        [action.payload.product.id]: action.payload,
+      });
     },
     remove: (state, action: PayloadAction<Product>) => {
-      state.items = state.items.filter(
-        item => item.product.id !== action.payload.id,
-      );
+      delete state.itemsById[action.payload.id];
     },
     clear: state => {
-      state.items = [];
+      state.itemsById = {};
     },
   },
 });
 
-export const {add, increaseQuantity, decreaseQuantity, clear, remove} =
-  basketSlice.actions;
+export const basketActions = basketSlice.actions;
 
 export default basketSlice.reducer;
 

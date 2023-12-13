@@ -1,42 +1,56 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Card, Text} from '@ui-kitten/components';
+import {Button, Text} from '@ui-kitten/components';
 
 import {Product} from '../common/types';
-import {formatAmount, getSecureLink} from '../common/utils';
+import {getSecureLink} from '../common/utils';
 import ProductImage from './ProductImage';
+import QuantityInput from './QuantityInput';
+import ProductInfo from './ProductInfo';
+import Spacer from './Spacer';
+import {useAppDispatch, useAppSelector} from '../store/hooks';
+import {basketActions} from '../store/basket';
 
 type Props = {
   product: Product;
 };
 
 export default function ProductListItem(props: Props) {
+  const dispatch = useAppDispatch();
+
   const {product} = props;
 
+  const productInCart = useAppSelector(
+    state => state.basket.itemsById?.[product.id],
+  );
+
+  const [quantity, setQuantity] = useState(productInCart?.quantity || 1);
+
+  const isProductInCart = productInCart !== undefined;
+
+  const addButtonText = isProductInCart ? 'Update' : 'Add to Basket';
+
+  const onAddToBasket = () => {
+    dispatch(basketActions.addOrUpdate({product: product, quantity: quantity}));
+  };
+
   return (
-    <Card>
-      <View style={styles.container}>
-        <ProductImage
-          source={{uri: getSecureLink(product.img)}}
-          containerStyle={styles.productImageContainer}
-          style={styles.productImage}
-          resizeMode={'cover'}
-        />
-        <View style={styles.innerContainer}>
-          <Text category={'s1'} style={styles.text}>
-            {product.name}
-          </Text>
-          <Text category={'p1'} style={styles.text}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget
-            ex lorem. Pellentesque tempus justo a egestas convallis. In
-            tristique nulla vel lectus eleifend efficitur.
-          </Text>
-          <Text category={'h6'} style={styles.text}>
-            {formatAmount(product.price)}
-          </Text>
-        </View>
+    <View style={styles.container}>
+      <ProductImage
+        source={{uri: getSecureLink(product.img)}}
+        containerStyle={styles.productImageContainer}
+        style={styles.productImage}
+        resizeMode={'cover'}
+      />
+      <View style={styles.innerContainer}>
+        <ProductInfo name={product.name} price={product.price} />
+        <QuantityInput quantity={quantity} setQuantity={setQuantity} />
+        <Spacer space={8} />
+        <Button size={'small'} onPress={onAddToBasket}>
+          <Text>{addButtonText}</Text>
+        </Button>
       </View>
-    </Card>
+    </View>
   );
 }
 
@@ -44,10 +58,14 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
+    padding: 16,
+    maxHeight: 232,
   },
   innerContainer: {
     flex: 1,
     flexDirection: 'column',
+    maxHeight: 200,
+    alignItems: 'flex-start',
   },
   productImageContainer: {
     width: 100,
