@@ -1,7 +1,8 @@
 import React from 'react';
-import {Divider, Layout, Text, TopNavigation} from '@ui-kitten/components';
+import {Divider, Layout, TopNavigation} from '@ui-kitten/components';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import ProductsList from '../components/ProductsList';
 
 export default function Products() {
   return (
@@ -9,7 +10,7 @@ export default function Products() {
       <TopNavigation title={'Products'} alignment={'center'} />
       <Divider />
       <Layout style={styles.container}>
-        <Text>Products</Text>
+        <ProductsList />
       </Layout>
     </SafeAreaView>
   );

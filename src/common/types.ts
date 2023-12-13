@@ -3,7 +3,7 @@ export type Product = {
   colour: string;
   name: string;
   price: number;
-  img: number;
+  img: string;
 };
 
 export type BasketItem = {
