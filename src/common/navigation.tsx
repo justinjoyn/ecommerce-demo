@@ -10,7 +10,9 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export default function RootStackNavigator() {
   return (
-    <RootStack.Navigator initialRouteName={'Products'}>
+    <RootStack.Navigator
+      initialRouteName={'Products'}
+      screenOptions={{headerShown: false}}>
       <RootStack.Screen name={'Products'} component={Products} />
       <RootStack.Screen name={'ProductDetail'} component={ProductDetail} />
       <RootStack.Screen name={'Basket'} component={Basket} />

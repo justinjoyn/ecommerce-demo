@@ -20,7 +20,7 @@ const useDetail = (id: number) => {
   });
 };
 
-export const salesTransactions = {
+export const products = {
   useList,
   useDetail,
 };
