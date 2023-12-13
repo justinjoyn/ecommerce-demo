@@ -16,3 +16,11 @@ export type User = {
   name: string;
   email: string;
 };
+
+export type RootStackParamList = {
+  Products: undefined;
+  ProductDetail: {
+    product: Product;
+  };
+  Basket: undefined;
+};
