@@ -98,7 +98,11 @@ export default function ProductDetail(props: Props) {
           />
           <Card>
             <Spacer />
-            <ProductInfo name={product.name} price={product.price} />
+            <ProductInfo
+              name={product.name}
+              price={product.price}
+              colour={product.colour}
+            />
             <Spacer />
 
             {BasketActions}

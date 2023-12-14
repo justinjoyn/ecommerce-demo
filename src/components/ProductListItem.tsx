@@ -46,7 +46,11 @@ export default function ProductListItem(props: Props) {
           resizeMode={'cover'}
         />
         <View style={styles.innerContainer}>
-          <ProductInfo name={product.name} price={product.price} />
+          <ProductInfo
+            name={product.name}
+            price={product.price}
+            colour={product.colour}
+          />
           {!isProductInCart && (
             <Button size={'small'} onPress={onAddToBasket}>
               <Text>Add to basket</Text>

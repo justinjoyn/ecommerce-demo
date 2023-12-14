@@ -10,10 +10,10 @@ export default function ProductImage(props: Props) {
   const {containerStyle, ...imageProps} = props;
   return (
     <View style={containerStyle}>
-      <View style={styles.fallBackContainer}>
+      <View style={styles.fallBackContainer} testID={'fallback-icon'}>
         <Icon name={'image-outline'} style={styles.icon} fill={'#8F9BB3'} />
       </View>
-      <Image {...imageProps} />
+      <Image {...imageProps} testID={'product-image'} />
     </View>
   );
 }

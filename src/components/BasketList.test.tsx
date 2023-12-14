@@ -1,12 +1,8 @@
 import React from 'react';
 import {fromPartial} from '@total-typescript/shoehorn';
-import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
-import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import BasketList from './BasketList';
-import {renderWithProviders} from '../store/testHelper';
-import {expect, test} from '@jest/globals';
+import {renderWithProviders, uiKittenWrapper} from '../utils/testing';
 import {BasketItem} from '../types/common';
 
 // Mock data for the store
@@ -25,12 +21,7 @@ const mockBasketItems: BasketItem[] = [
 
 test('renders all items in the basket', () => {
   const {getAllByTestId} = renderWithProviders(
-    <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <BasketList />
-      </ApplicationProvider>
-    </>,
+    uiKittenWrapper(<BasketList />),
     fromPartial({
       basket: {
         itemsById: {

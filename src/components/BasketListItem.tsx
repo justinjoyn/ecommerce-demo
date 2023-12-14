@@ -41,6 +41,7 @@ export default function BasketListItem(props: Props) {
         <ProductInfo
           name={item.product.name}
           price={item.product.price}
+          colour={item.product.colour}
           compact
         />
         <View style={styles.row}>

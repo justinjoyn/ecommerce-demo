@@ -22,7 +22,11 @@ export default class DefaultFallbackComponent extends React.Component<DefaultFal
           requested action.
         </Text>
 
-        <Button onPress={() => this.props.resetError()} title={'Go Back'} />
+        <Button
+          onPress={() => this.props.resetError()}
+          title={'Go Back'}
+          testID={'back-button'}
+        />
       </View>
     );
   }

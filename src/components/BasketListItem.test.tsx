@@ -1,12 +1,7 @@
 import React from 'react';
-import {ApplicationProvider, IconRegistry} from '@ui-kitten/components';
-import * as eva from '@eva-design/eva';
-import {EvaIconsPack} from '@ui-kitten/eva-icons';
-
-import {expect, test} from '@jest/globals';
 import {BasketItem} from '../types/common';
 import BasketListItem from './BasketListItem';
-import {renderWithProviders} from '../store/testHelper';
+import {renderWithProviders, uiKittenWrapper} from '../utils/testing';
 
 // Mock data for the store
 const mockBasketItem: BasketItem = {
@@ -20,14 +15,9 @@ const mockBasketItem: BasketItem = {
   quantity: 1,
 };
 
-test('renders all items in the basket', () => {
+test('renders basket item', () => {
   const {getByTestId} = renderWithProviders(
-    <>
-      <IconRegistry icons={EvaIconsPack} />
-      <ApplicationProvider {...eva} theme={eva.light}>
-        <BasketListItem item={mockBasketItem} />
-      </ApplicationProvider>
-    </>,
+    uiKittenWrapper(<BasketListItem item={mockBasketItem} />),
   );
 
   const basketItems = getByTestId('basket-item');
