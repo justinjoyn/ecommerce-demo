@@ -1,8 +1,10 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button, Text} from '@ui-kitten/components';
+import {Button, Card, Text} from '@ui-kitten/components';
+import {useNavigation} from '@react-navigation/native';
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {Product} from '../common/types';
+import {Product, RootStackParamList} from '../common/types';
 import {getSecureLink} from '../common/utils';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';
@@ -14,6 +16,8 @@ type Props = {
 };
 
 export default function ProductListItem(props: Props) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useAppDispatch();
 
   const {product} = props;
@@ -24,27 +28,33 @@ export default function ProductListItem(props: Props) {
 
   const isProductInCart = productInCart !== undefined;
 
-  const onAddToBasket = () => {
+  const onAddToBasket = useCallback(() => {
     dispatch(basketActions.addOrUpdate({product: product, quantity: 1}));
-  };
+  }, [dispatch, product]);
+
+  const goToProductDetail = useCallback(() => {
+    navigation.navigate('ProductDetail', {product: product});
+  }, [navigation, product]);
 
   return (
-    <View style={styles.container}>
-      <ProductImage
-        source={{uri: getSecureLink(product.img)}}
-        containerStyle={styles.productImageContainer}
-        style={styles.productImage}
-        resizeMode={'cover'}
-      />
-      <View style={styles.innerContainer}>
-        <ProductInfo name={product.name} price={product.price} />
-        {!isProductInCart && (
-          <Button size={'small'} onPress={onAddToBasket}>
-            <Text>Add to basket</Text>
-          </Button>
-        )}
+    <Card onPress={goToProductDetail}>
+      <View style={styles.container}>
+        <ProductImage
+          source={{uri: getSecureLink(product.img)}}
+          containerStyle={styles.productImageContainer}
+          style={styles.productImage}
+          resizeMode={'cover'}
+        />
+        <View style={styles.innerContainer}>
+          <ProductInfo name={product.name} price={product.price} />
+          {!isProductInCart && (
+            <Button size={'small'} onPress={onAddToBasket}>
+              <Text>Add to basket</Text>
+            </Button>
+          )}
+        </View>
       </View>
-    </View>
+    </Card>
   );
 }
 
@@ -52,7 +62,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     flexDirection: 'row',
-    padding: 16,
     maxHeight: 232,
   },
   innerContainer: {
