@@ -3,9 +3,12 @@ import React, {useCallback, useMemo} from 'react';
 import {Button, Card, Layout, Text, TopNavigation} from '@ui-kitten/components';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import HeaderAction from '../components/HeaderAction';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '../types/common';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {CompositeScreenProps} from '@react-navigation/native';
+import type {DrawerScreenProps} from '@react-navigation/drawer';
+
+import {DrawerParamList, RootStackParamList} from '../types/common';
 import ProductImage from '../components/ProductImage';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {getSecureLink} from '../utils/common';
@@ -15,7 +18,10 @@ import Spacer from '../components/Spacer';
 import {basketActions} from '../store/basket';
 import EvaIcon from '../components/EvaIcon';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'ProductDetail'>;
+type Props = CompositeScreenProps<
+  NativeStackScreenProps<RootStackParamList, 'ProductDetail'>,
+  DrawerScreenProps<DrawerParamList, 'Home'>
+>;
 
 export default function ProductDetail(props: Props) {
   const dispatch = useAppDispatch();
@@ -68,7 +74,7 @@ export default function ProductDetail(props: Props) {
     } else {
       return (
         <Button size={'small'} onPress={() => onQuantityChange(1)}>
-          <Text category={'c1'}>Add to basket</Text>
+          <Text category={'c1'}>Add to Basket</Text>
         </Button>
       );
     }

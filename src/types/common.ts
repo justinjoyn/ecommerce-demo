@@ -1,3 +1,5 @@
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+
 export type Product = {
   id: number;
   colour: string;
@@ -23,4 +25,8 @@ export type RootStackParamList = {
     product: Product;
   };
   Basket: undefined;
+};
+
+export type DrawerParamList = {
+  Home: NativeStackScreenProps<RootStackParamList>;
 };

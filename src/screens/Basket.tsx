@@ -2,15 +2,21 @@ import {Layout, TopNavigation} from '@ui-kitten/components';
 import React from 'react';
 import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '../types/common';
+import type {NativeStackScreenProps} from '@react-navigation/native-stack';
+import type {CompositeScreenProps} from '@react-navigation/native';
+import type {DrawerScreenProps} from '@react-navigation/drawer';
+
+import {DrawerParamList, RootStackParamList} from '../types/common';
 import HeaderAction from '../components/HeaderAction';
 import BasketList from '../components/BasketList';
 import BasketTotal from '../components/BasketTotal';
 import {useAppSelector} from '../store/hooks';
 
-type Props = NativeStackScreenProps<RootStackParamList, 'Basket'>;
+type Props = CompositeScreenProps<
+  NativeStackScreenProps<RootStackParamList, 'Basket'>,
+  DrawerScreenProps<DrawerParamList, 'Home'>
+>;
 
 export default function Basket(props: Props) {
   const {navigation} = props;
