@@ -12,7 +12,7 @@ import {
 } from 'redux-persist';
 
 import userReducer from './user';
-import basketReducer from './basket';
+import basketReducer, {basketListenerMiddleware} from './basket';
 
 const getPersistConfig = (key: string, blacklist?: string[]) => {
   return {
@@ -37,7 +37,7 @@ export const store = configureStore({
         // Ignore redux-persist action types
         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
-    }),
+    }).prepend(basketListenerMiddleware.middleware),
 });
 
 export const persistor = persistStore(store);
