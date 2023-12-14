@@ -2,9 +2,10 @@ import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button, Card, Text} from '@ui-kitten/components';
 import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {Product, RootStackParamList} from '../types/common';
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {Product, RootStackParamList} from '../types/common';
+
 import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';
@@ -51,11 +52,15 @@ export default function ProductListItem(props: Props) {
             price={product.price}
             colour={product.colour}
           />
-          {!isProductInCart && (
-            <Button size={'small'} onPress={onAddToBasket}>
-              <Text>Add to basket</Text>
-            </Button>
-          )}
+
+          <Button
+            size={'small'}
+            onPress={onAddToBasket}
+            disabled={isProductInCart}>
+            <Text>
+              {isProductInCart ? 'Already in Basket' : 'Add to Basket'}
+            </Text>
+          </Button>
         </View>
       </View>
     </Card>
