@@ -2,7 +2,7 @@ import React from 'react';
 import {StyleSheet, View} from 'react-native';
 import {Button} from '@ui-kitten/components';
 
-import {BasketItem} from '../common/types';
+import {BasketItem} from '../types/common';
 import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import QuantityInput from './QuantityInput';
@@ -30,7 +30,7 @@ export default function BasketListItem(props: Props) {
   };
 
   return (
-    <View style={styles.container}>
+    <View style={styles.container} testID={'basket-item'}>
       <ProductImage
         source={{uri: getSecureLink(item.product.img)}}
         containerStyle={styles.productImageContainer}

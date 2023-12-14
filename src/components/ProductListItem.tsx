@@ -4,7 +4,7 @@ import {Button, Card, Text} from '@ui-kitten/components';
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
-import {Product, RootStackParamList} from '../common/types';
+import {Product, RootStackParamList} from '../types/common';
 import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';

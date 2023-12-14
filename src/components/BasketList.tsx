@@ -1,7 +1,7 @@
 import React, {useCallback, useMemo} from 'react';
 
 import BasketListItem from './BasketListItem';
-import {BasketItem} from '../common/types';
+import {BasketItem} from '../types/common';
 import {FlashList} from '@shopify/flash-list';
 import {useAppSelector} from '../store/hooks';
 

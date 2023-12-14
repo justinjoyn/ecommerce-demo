@@ -6,7 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
 import ProductsList from '../components/ProductsList';
 import HeaderAction from '../components/HeaderAction';
-import {RootStackParamList} from '../common/types';
+import {RootStackParamList} from '../types/common';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Products'>;
 

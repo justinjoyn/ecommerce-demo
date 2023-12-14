@@ -10,6 +10,7 @@ import {
   PURGE,
   REGISTER,
 } from 'redux-persist';
+import {PersistPartial} from 'redux-persist/es/persistReducer';
 
 import userReducer from './user';
 import basketReducer, {basketListenerMiddleware} from './basket';
@@ -29,9 +30,10 @@ export const rootReducer = combineReducers({
 
 const persistedReducer = persistReducer(getPersistConfig('root'), rootReducer);
 
-export function setupStore() {
+export function setupStore(preloadedState?: RootState & PersistPartial) {
   return configureStore({
     reducer: persistedReducer,
+    preloadedState: preloadedState,
     middleware: getDefaultMiddleware =>
       getDefaultMiddleware({
         serializableCheck: {

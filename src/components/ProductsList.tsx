@@ -2,7 +2,7 @@ import React, {useCallback} from 'react';
 import {FlashList} from '@shopify/flash-list';
 
 import {products} from '../queries/products';
-import {Product} from '../common/types';
+import {Product} from '../types/common';
 import ProductListItem from './ProductListItem';
 
 export default function ProductsList() {

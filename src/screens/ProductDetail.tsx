@@ -5,7 +5,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import HeaderAction from '../components/HeaderAction';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '../common/types';
+import {RootStackParamList} from '../types/common';
 import ProductImage from '../components/ProductImage';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
 import {getSecureLink} from '../utils/common';

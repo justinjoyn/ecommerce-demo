@@ -1,7 +1,7 @@
 module.exports = {
   preset: 'react-native',
   transformIgnorePatterns: [
-    'node_modules/(?!@react-native|react-native|@ui-kitten|@react-native-community|react-navigation|@react-navigation/.*|react-redux|@shopify/.*)',
+    'node_modules/(?!@react-native|react-native|@ui-kitten|@react-native-community|react-navigation|@react-navigation/.*|react-redux|redux-persist|@reduxjs/.*|@shopify/.*)',
   ],
   transform: {
     '^.+\\.[jt]sx?$': 'babel-jest',

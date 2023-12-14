@@ -2,7 +2,7 @@ import {useQuery} from '@tanstack/react-query';
 
 import {api} from '../common/axios';
 import {ENDPOINTS} from '../common/constants';
-import {Product} from '../common/types';
+import {Product} from '../types/common';
 
 const useList = () => {
   return useQuery({

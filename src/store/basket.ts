@@ -8,7 +8,7 @@ import {
 
 import type {RootState, AppDispatch} from '.';
 
-import {BasketItem} from '../common/types';
+import {BasketItem} from '../types/common';
 
 type BasketSate = {
   itemsById: Record<string, BasketItem>;

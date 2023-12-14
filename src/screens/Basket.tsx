@@ -4,7 +4,7 @@ import {StyleSheet} from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 
-import {RootStackParamList} from '../common/types';
+import {RootStackParamList} from '../types/common';
 import HeaderAction from '../components/HeaderAction';
 import BasketList from '../components/BasketList';
 import BasketTotal from '../components/BasketTotal';

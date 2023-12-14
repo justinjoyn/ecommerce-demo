@@ -1,5 +1,5 @@
 import {PayloadAction, createSlice} from '@reduxjs/toolkit';
-import {User} from '../common/types';
+import {User} from '../types/common';
 
 /**
  * This store can be used to store the current user.

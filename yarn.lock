@@ -2065,6 +2065,11 @@
     pretty-format "^29.7.0"
     redent "^3.0.0"
 
+"@total-typescript/shoehorn@0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@total-typescript/shoehorn/-/shoehorn-0.1.1.tgz#72d3ba9364faa4f6b8e66c57b7a9094457e3652b"
+  integrity sha512-XSPcazQsC2Cr7eCiAI+M2bTmMziBvFWYTYMgUDKLbU6i+7m3I2BF5gXF5vKDO8577fONs9CvmTvVa7+nMHMfxg==
+
 "@types/babel__core@^7.1.14":
   version "7.20.5"
   resolved "https://registry.yarnpkg.com/@types/babel__core/-/babel__core-7.20.5.tgz#3df15f27ba85319caa07ba08d0721889bb39c017"
