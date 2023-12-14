@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 import {StyleSheet, View} from 'react-native';
-import {Button} from '@ui-kitten/components';
+import {Button, Card} from '@ui-kitten/components';
+import {useNavigation} from '@react-navigation/native';
 
-import {BasketItem} from '../types/common';
 import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import QuantityInput from './QuantityInput';
@@ -12,11 +12,16 @@ import {useAppDispatch} from '../store/hooks';
 import {basketActions} from '../store/basket';
 import EvaIcon from './EvaIcon';
 
+import type {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import type {BasketItem, RootStackParamList} from '../types/common';
+
 type Props = {
   item: BasketItem;
 };
 
 export default function BasketListItem(props: Props) {
+  const navigation =
+    useNavigation<NativeStackNavigationProp<RootStackParamList>>();
   const dispatch = useAppDispatch();
 
   const {item} = props;
@@ -29,36 +34,42 @@ export default function BasketListItem(props: Props) {
     dispatch(basketActions.addOrUpdate({...item, quantity: value}));
   };
 
+  const goToProductDetail = useCallback(() => {
+    navigation.navigate('ProductDetail', {product: item.product});
+  }, [item.product, navigation]);
+
   return (
-    <View style={styles.container} testID={'basket-item'}>
-      <ProductImage
-        source={{uri: getSecureLink(item.product.img)}}
-        containerStyle={styles.productImageContainer}
-        style={styles.productImage}
-        resizeMode={'cover'}
-      />
-      <View style={styles.innerContainer}>
-        <ProductInfo
-          name={item.product.name}
-          price={item.product.price}
-          colour={item.product.colour}
-          compact
+    <Card onPress={goToProductDetail}>
+      <View style={styles.container} testID={'basket-item'}>
+        <ProductImage
+          source={{uri: getSecureLink(item.product.img)}}
+          containerStyle={styles.productImageContainer}
+          style={styles.productImage}
+          resizeMode={'cover'}
         />
-        <View style={styles.row}>
-          <QuantityInput
-            quantity={item.quantity}
-            setQuantity={onQuantityChange}
+        <View style={styles.innerContainer}>
+          <ProductInfo
+            name={item.product.name}
+            price={item.product.price}
+            colour={item.product.colour}
+            compact
           />
-          <Spacer space={8} />
-          <Button
-            size={'small'}
-            appearance={'ghost'}
-            onPress={onRemove}
-            accessoryLeft={EvaIcon('trash-outline')}
-          />
+          <View style={styles.row}>
+            <QuantityInput
+              quantity={item.quantity}
+              setQuantity={onQuantityChange}
+            />
+            <Spacer space={8} />
+            <Button
+              size={'small'}
+              appearance={'ghost'}
+              onPress={onRemove}
+              accessoryLeft={EvaIcon('trash-outline')}
+            />
+          </View>
         </View>
       </View>
-    </View>
+    </Card>
   );
 }
 
