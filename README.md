@@ -47,3 +47,26 @@ yarn ios
 If everything is set up _correctly_, you should see the app running in the _Android Emulator_ or _iOS Simulator_ shortly provided you have set up the emulator/simulator correctly.
 
 This is one way to run the app — you can also run it directly from within Android Studio and Xcode respectively.
+
+## Step 4: Testing
+
+This project uses Jest for unit testing. YOu can run the tests like so
+
+```bash
+yarn test
+```
+
+The code is completely typed and you can run static analysis like so
+
+```bash
+yarn tsc
+```
+
+# Demo
+
+<img src="demo.gif" width="350"/>
+
+# Notes
+
+1. One of the product image URLs was using HTTP instead of HTTPS. A workaround has been put in place to convert all asset URLs into HTTPS.
+2. Drawer navigation uses the `/menu` endpoint, but all items point to the same screen.
