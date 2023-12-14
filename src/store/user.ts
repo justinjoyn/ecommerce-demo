@@ -9,7 +9,7 @@ type UserSate = {
   user: User | null;
 };
 
-const initialState: UserSate = {
+const initialUserState: UserSate = {
   // Dummy user
   user: {
     id: 0,
@@ -20,7 +20,7 @@ const initialState: UserSate = {
 
 export const userSlice = createSlice({
   name: 'user',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     set: (state, action: PayloadAction<User>) => {
       state.user = action.payload;

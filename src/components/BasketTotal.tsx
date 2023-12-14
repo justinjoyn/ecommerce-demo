@@ -3,7 +3,7 @@ import React from 'react';
 
 import {useAppSelector} from '../store/hooks';
 import {Divider, Layout, Text} from '@ui-kitten/components';
-import {formatAmount} from '../common/utils';
+import {formatAmount} from '../utils/common';
 
 export default function BasketTotal() {
   const totalPrice = useAppSelector(state => state.basket.totalPrice);

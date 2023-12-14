@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 
 import {Product, RootStackParamList} from '../common/types';
-import {getSecureLink} from '../common/utils';
+import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import ProductInfo from './ProductInfo';
 import {useAppDispatch, useAppSelector} from '../store/hooks';

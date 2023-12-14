@@ -3,7 +3,7 @@ import {StyleSheet, View} from 'react-native';
 import {Button} from '@ui-kitten/components';
 
 import {BasketItem} from '../common/types';
-import {getSecureLink} from '../common/utils';
+import {getSecureLink} from '../utils/common';
 import ProductImage from './ProductImage';
 import QuantityInput from './QuantityInput';
 import ProductInfo from './ProductInfo';

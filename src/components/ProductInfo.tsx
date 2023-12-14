@@ -2,7 +2,7 @@ import {StyleSheet, View} from 'react-native';
 import React from 'react';
 import {Text} from '@ui-kitten/components';
 
-import {formatAmount} from '../common/utils';
+import {formatAmount} from '../utils/common';
 
 type Props = {
   name: string;

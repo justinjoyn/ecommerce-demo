@@ -22,26 +22,32 @@ const getPersistConfig = (key: string, blacklist?: string[]) => {
   };
 };
 
-const rootReducer = combineReducers({
+export const rootReducer = combineReducers({
   user: userReducer,
   basket: persistReducer(getPersistConfig('basket'), basketReducer),
 });
 
 const persistedReducer = persistReducer(getPersistConfig('root'), rootReducer);
 
-export const store = configureStore({
-  reducer: persistedReducer,
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
-      serializableCheck: {
-        // Ignore redux-persist action types
-        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-      },
-    }).prepend(basketListenerMiddleware.middleware),
-});
+export function setupStore() {
+  return configureStore({
+    reducer: persistedReducer,
+    middleware: getDefaultMiddleware =>
+      getDefaultMiddleware({
+        serializableCheck: {
+          // Ignore redux-persist action types
+          ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        },
+      }).prepend(basketListenerMiddleware.middleware),
+  });
+}
+
+export const store = setupStore();
+
+export type AppStore = ReturnType<typeof setupStore>;
 
 export const persistor = persistStore(store);
 
-export type RootState = ReturnType<typeof store.getState>;
+export type RootState = ReturnType<typeof rootReducer>;
 
 export type AppDispatch = typeof store.dispatch;

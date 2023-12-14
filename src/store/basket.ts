@@ -16,7 +16,7 @@ type BasketSate = {
   itemCount: number;
 };
 
-const initialState: BasketSate = {
+const initialBasketState: BasketSate = {
   itemsById: {},
   totalPrice: 0,
   itemCount: 0,
@@ -24,7 +24,7 @@ const initialState: BasketSate = {
 
 export const basketSlice = createSlice({
   name: 'basket',
-  initialState,
+  initialState: initialBasketState,
   reducers: {
     addOrUpdate: (state, action: PayloadAction<BasketItem>) => {
       state.itemsById = Object.assign(state.itemsById, {

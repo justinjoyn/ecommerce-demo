@@ -8,7 +8,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {RootStackParamList} from '../common/types';
 import ProductImage from '../components/ProductImage';
 import {useAppDispatch, useAppSelector} from '../store/hooks';
-import {getSecureLink} from '../common/utils';
+import {getSecureLink} from '../utils/common';
 import ProductInfo from '../components/ProductInfo';
 import QuantityInput from '../components/QuantityInput';
 import Spacer from '../components/Spacer';
