@@ -5,7 +5,7 @@ import * as eva from '@eva-design/eva';
 import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 import BasketList from './BasketList';
-import {renderWithProviders} from '../utils/reduxTest';
+import {renderWithProviders} from '../store/testHelper';
 import {expect, test} from '@jest/globals';
 import {BasketItem} from '../types/common';
 

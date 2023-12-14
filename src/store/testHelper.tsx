@@ -4,8 +4,8 @@ import type {RenderOptions} from '@testing-library/react-native';
 import {Provider} from 'react-redux';
 import {PersistPartial} from 'redux-persist/es/persistReducer';
 
-import type {AppStore, RootState} from '../store';
-import {setupStore} from '../store';
+import type {AppStore, RootState} from '.';
+import {setupStore} from '.';
 
 // This type interface extends the default options for render from RTL, as well
 // as allows the user to specify other things such as initialState, store.
