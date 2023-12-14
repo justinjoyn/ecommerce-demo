@@ -19,6 +19,17 @@ export type User = {
   email: string;
 };
 
+export type MenuChildren = {
+  name: string;
+  categories: string[];
+};
+
+export type Menu = {
+  name: string;
+  img: string;
+  children: MenuChildren[];
+};
+
 export type RootStackParamList = {
   Products: undefined;
   ProductDetail: {

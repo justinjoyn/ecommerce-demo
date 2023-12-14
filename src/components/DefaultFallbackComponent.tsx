@@ -1,6 +1,6 @@
 import React from 'react';
 
-import {Button, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 
 export type DefaultFallbackComponentProps = {
   error?: Error;
@@ -14,10 +14,10 @@ export default class DefaultFallbackComponent extends React.Component<DefaultFal
 
   render() {
     return (
-      <View>
-        <Text>Oops! Something went wrong.</Text>
+      <View style={styles.container}>
+        <Text style={styles.text}>Oops! Something went wrong.</Text>
 
-        <Text>
+        <Text style={styles.text}>
           There seems to be an error and we are not able to process the
           requested action.
         </Text>
@@ -31,3 +31,15 @@ export default class DefaultFallbackComponent extends React.Component<DefaultFal
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignContent: 'center',
+    padding: 16,
+  },
+  text: {
+    textAlign: 'center',
+  },
+});
